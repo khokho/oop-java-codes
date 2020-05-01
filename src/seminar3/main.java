@@ -28,6 +28,15 @@ public class main {
     public static void main(String[] args) {
 
 
+        int[] a = new int[]{10,12};
+        int[] b;
+
+        b=a.clone();
+        b[0]=15;
+        System.out.println(b[0]);
+        System.out.println(b[1]);
+        System.out.println(a[0]);
+
         StringBuilder[] x = new StringBuilder[2];
         StringBuilder[] y = new StringBuilder[2];
         x[0]=new StringBuilder("aa");
