@@ -1,4 +1,4 @@
-package seminar12;
+package seminar14_2;
 
 public class DSTest {
     static OurDS ds;

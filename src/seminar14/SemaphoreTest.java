@@ -1,4 +1,4 @@
-package seminar11;
+package seminar14;
 
 public class SemaphoreTest {
     static Semaphore sm;

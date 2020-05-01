@@ -1,4 +1,4 @@
-package seminar12;
+package seminar14_2;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
