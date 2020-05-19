@@ -4,8 +4,12 @@ import javax.swing.*;
 import java.util.Arrays;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.Semaphore;
 
 public class Conway {
+
+    boolean running = false;
+
     public int getSize() {
         return size;
     }
@@ -63,18 +67,29 @@ public class Conway {
 
     public void set(int x, int y, boolean v){
         grid[x][y]=v;
+        if(listener != null)
+            listener.repaint();
     }
 
     public boolean get(int x,int y){
         return grid[x][y];
     }
 
+
     public void start(){
-        for(int i=0; i<size; i++){
-            for(int j=0; j<size; j++){
-                Spot sp = new Spot(i,j);
-                sp.start();
+        if(!running) {
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    Spot sp = new Spot(i, j);
+                    sp.start();
+                }
             }
+
+            running = true;
+        }
+        else {
+            waiter.reset();
+            running = false;
         }
     }
 
@@ -111,7 +126,7 @@ public class Conway {
                 try {
                     waiter.await();
                 } catch (InterruptedException | BrokenBarrierException e) {
-                    e.printStackTrace();
+                    return;
                 }
             }
         }
